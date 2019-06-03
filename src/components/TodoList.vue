@@ -4,31 +4,28 @@
       Completed Tasks: {{ todos.filter(todo => todo.done === true).length }}
     </p>
     <p>Pending Tasks: {{ todos.filter(todo => todo.done === false).length }}</p>
-    <div class="ui centered card" v-for="todo in todos" :key="todos.indexOf(todo)">
-      <div class="content">
-        <div class="header">
-          {{ todo.title }}
-        </div>
-        <div class="meta">{{ todo.project }}</div>
-        <div class="extra content">
-          <span class="right floated edit icon">
-            <i class="edit icon"></i>
-          </span>
-        </div>
-      </div>
-      <div class="ui bottom attached green basic button" v-show="todo.done">
-        Completed
-      </div>
-      <div class="ui bottom attached red basic button" v-show="!todo.done">
-        Complete
-      </div>
-    </div>
+    <Todo
+      v-on:deleteTodo="deleteTodo"
+      v-for="(todo, index) in todos"
+      v-bind:todo="todo"
+      :key="index"
+    ></Todo>
   </div>
 </template>
 
 <script type="text/javascript">
+import Todo from './Todo';
+
 export default {
   props: ['todos'],
+  components: {
+    Todo,
+  },
+  methods: {
+    deleteTodo(todo) {
+      this.todos.splice(this.todos.indexOf(todo), 1);
+    },
+  },
 };
 </script>
 
