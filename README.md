@@ -1,4 +1,8 @@
-# vue-todo
+# Vue Todo List
+
+Simple todo list manager to track important tasks.
+
+Deployed [live!](https://barclayd.github.io/Vue-Todo/)
 
 ## Project setup
 ```
